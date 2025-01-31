@@ -90,7 +90,10 @@ function CreateOrder() {
 
 export async function Action({ request }) {
   const formData = await request.formData();
+
   const data = Object.fromEntries(formData);
+  console.log(data);
+
   const order = {
     ...data,
     cart: JSON.parse(data.cart),
@@ -98,6 +101,7 @@ export async function Action({ request }) {
   };
 
   const errors = {};
+
   if (!isValidPhone(order.phone))
     errors.phone = "Please give use your correct phone number to contact you.";
 
